@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\francis\OneDrive\Desktop\Practice\Practice_api\day_11_foodsuplement\database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1013"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainsales"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="products" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="78"/><column index="2" value="43"/><column index="3" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="sales" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/><column index="2" value="78"/><column index="3" value="79"/><column index="4" value="63"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">
+--- CREATE TABLE PRODUCTS
+CREATE TABLE products(
+	product_id INTEGER PRIMARY KEY,
+	name TEXT,
+	price DECIMAL(6,2)
+);
+--- CREATE TABLE SALES
+
+CREATE TABLE sales(
+	sales_id INTEGER PRIMARY KEY,
+	product_id INTEGER,
+	sales_date DATE,
+	quantity INTEGER,
+	FOREIGN KEY(product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO products (name, price) VALUES
+('Vitamin C 500mg', 10.99),
+('Protein Powder 1kg', 35.50),
+('Omega 3 Fish Oil', 15.20);
+
+
+INSERT INTO sales (product_id, sales_date, quantity) VALUES
+(1, '2024-06-15', 2),
+(3, '2024-06-15', 1); </sql><current_tab id="0"/></tab_sql></sqlb_project>
