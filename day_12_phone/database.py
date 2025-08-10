@@ -21,3 +21,6 @@ def create_table():
         """)
     conn.commit()
     conn.close()
+
+def create_table_category():
+    conn = get_db_connections()
