@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Inventory Table</title>
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+                margin:30px;
+            }
+            table{
+                width:100;
+                border-collapse:collapse;
+                margin-top:15px;
+            }
+            th,td{
+                border:1px solid #ddd;
+                padding:8px;
+                text-align: center;
+            }
+            th{
+                background-color: #4CAF50;
+                color:white;
+            }
+            tr:nth-child(even){background-color:#f2f2f2;}
+        </style>
+    </head>
+    <body>
+        <table id="Inventory">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </body>
+    <script>
+        async function loadInventory() {
+            try {
+                let response = await fetch("http://127.0.0.1:8000/api/items/");
+                let data = await response.json();
+
+                let tableBody = document.querySelector("#inventoryTable tbody");
+                tableBody.innerHTML = ""; // Clear old data
+
+                data.forEach(item => {
+                    let row = `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error loading inventory:", error);
+            }
+        }
+
+        loadInventory();
+    </script>
+</html>
