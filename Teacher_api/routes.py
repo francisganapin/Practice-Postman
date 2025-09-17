@@ -29,13 +29,14 @@ def get_students(id):
 @student_bp.route('/<int:id>',methods=['PUT'])
 def update_student(id):
     student = Student.query.get_or_404(id)
-    data = request.get__json()
+    data = request.get_json()
     update_student = student_schema.load(data,instance=student,partial=True)
+    db.session.commit()
     return student_schema.jsonify(update_student)
 
 @student_bp.route('/<int:id>',methods=['DELETE'])
 def delete_student(id):
-    student = Student.quey.get_or_404(id)
+    student = Student.query.get_or_404(id)
     db.session.delete(student)
     db.session.commit()
     return jsonify({"message":"Student Deleted successfully"})
